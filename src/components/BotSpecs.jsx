@@ -7,18 +7,10 @@ function BotSpecs() {
   const history = useHistory();
 
   useEffect(() => {
-    fetch(`http://localhost:5173/bots/${botId}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch bot');
-        }
-        return response.json();
-      })
+    fetch(`http://localhost:5173/bots/${botId}`) // Corrected fetch URL
+      .then(response => response.json())
       .then(data => setBot(data))
-      .catch(error => {
-        console.error('Error fetching bot:', error);
-        // Optionally, you can set an error state here to handle and display the error in the UI
-      });
+      .catch(error => console.error('Error fetching bot:', error));
   }, [botId]);
 
   const enlistBot = () => {
